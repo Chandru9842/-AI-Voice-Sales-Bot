@@ -1,0 +1,25 @@
+{
+  "name": "voxsales-ai-voice-bot",
+  "version": "1.0.0",
+  "description": "Autonomous AI Voice Sales Bot for SaaS Products",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "ai",
+    "voice-bot",
+    "sales",
+    "saas",
+    "speech-recognition",
+    "speech-synthesis"
+  ],
+  "author": "VoxSales AI Team",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}

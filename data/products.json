@@ -1,0 +1,73 @@
+[
+  {
+    "id": "nexusflow-ai",
+    "name": "NexusFlow AI",
+    "tagline": "Autonomous AI Voice & Customer Experience Platform",
+    "category": "Customer Support & Sales AI",
+    "pricing": "$49/seat/mo (Starter) | $149/seat/mo (Pro Enterprise)",
+    "targetAudience": "SaaS companies, BPOs, e-commerce, and high-velocity sales teams",
+    "keyFeatures": [
+      "Zero-latency conversational voice engine in 50+ languages",
+      "Real-time CRM sync with HubSpot, Salesforce & Zoho",
+      "Smart objection handling & automatic calendar scheduling",
+      "Instant post-call transcriptions, summaries & sales status classification"
+    ],
+    "pitch": "NexusFlow AI transforms your inbound and outbound customer support into hyper-personalized, 24/7 autonomous voice conversations that close deals and resolve 85% of tickets automatically.",
+    "faqs": [
+      {
+        "q": "Can it integrate with our existing telephony?",
+        "a": "Yes, NexusFlow connects with Twilio, Plivo, Genesys, and modern SIP trunks in minutes."
+      },
+      {
+        "q": "Is there a free trial?",
+        "a": "Yes! We offer a full 14-day free trial with 500 complimentary voice minutes."
+      }
+    ]
+  },
+  {
+    "id": "cloudguard-pro",
+    "name": "CloudGuard Pro",
+    "tagline": "Automated SOC-2, ISO27001 & Cloud Security Posture Platform",
+    "category": "Cybersecurity & Compliance SaaS",
+    "pricing": "$299/mo (Standard) | $799/mo (Enterprise Unlimited)",
+    "targetAudience": "Fast-growing startups, fintech, healthcare SaaS needing compliance fast",
+    "keyFeatures": [
+      "Automated SOC-2 Type II audit readiness in under 14 days",
+      "Continuous 24/7 AWS, GCP, Azure infrastructure scanning",
+      "Automated vendor risk management & evidence collection",
+      "Guaranteed compliance certification pass rate with auditor portal"
+    ],
+    "pitch": "CloudGuard Pro cuts SOC-2 and ISO27001 compliance prep from 9 months down to just 2 weeks with automated evidence collection and continuous cloud posture scanning.",
+    "faqs": [
+      {
+        "q": "How fast can we get audit ready?",
+        "a": "Most teams pass their audit in less than 3 weeks with our automated evidence pipelines."
+      },
+      {
+        "q": "Does it support multi-cloud?",
+        "a": "Yes, full native coverage across AWS, Azure, Google Cloud, and Kubernetes."
+      }
+    ]
+  },
+  {
+    "id": "scalepulse-crm",
+    "name": "ScalePulse CRM",
+    "tagline": "Predictive Sales Pipeline & Revenue Intelligence Platform",
+    "category": "Sales Tech & Revenue Operations",
+    "pricing": "$79/user/mo (Growth) | $199/user/mo (Scale)",
+    "targetAudience": "B2B sales teams, agency owners, revenue leaders looking to 3x win rates",
+    "keyFeatures": [
+      "AI deal forecasting with 94% forecast accuracy",
+      "Automated follow-up sequences with dynamic email & SMS",
+      "Conversation intelligence highlighting lost deals & customer intent",
+      "One-click WhatsApp and omnichannel sales inbox"
+    ],
+    "pitch": "ScalePulse CRM unifies your pipeline, tracks buying signals automatically, and guides reps on exact next actions to close more enterprise deals faster.",
+    "faqs": [
+      {
+        "q": "Can we migrate from HubSpot or Salesforce?",
+        "a": "Yes, our 1-click migration wizard imports all your contacts, deals, and history in 15 minutes."
+      }
+    ]
+  }
+]

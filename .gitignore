@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+
+# Temporary recordings (keep directory structure)
+data/recordings/*.webm
+data/recordings/*.wav
+!data/recordings/.gitkeep
