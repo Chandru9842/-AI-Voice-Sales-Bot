@@ -13,17 +13,22 @@ app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Directories
-const DATA_DIR = path.join(__dirname, 'data');
-const RECORDINGS_DIR = path.join(DATA_DIR, 'recordings');
+// Directories (with Vercel /tmp fallback support)
+const isVercel = Boolean(process.env.VERCEL || process.env.NOW_REGION);
+const DATA_DIR = isVercel ? path.join('/tmp', 'data') : path.join(__dirname, 'data');
+const RECORDINGS_DIR = isVercel ? path.join('/tmp', 'recordings') : path.join(DATA_DIR, 'recordings');
 const CALLS_FILE = path.join(DATA_DIR, 'calls.json');
 const PRODUCTS_FILE = path.join(DATA_DIR, 'products.json');
 
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
-}
-if (!fs.existsSync(RECORDINGS_DIR)) {
-  fs.mkdirSync(RECORDINGS_DIR, { recursive: true });
+try {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+  if (!fs.existsSync(RECORDINGS_DIR)) {
+    fs.mkdirSync(RECORDINGS_DIR, { recursive: true });
+  }
+} catch (e) {
+  console.warn('Directory init note:', e.message);
 }
 
 // Multer storage for recorded call audio
@@ -42,11 +47,16 @@ const upload = multer({ storage: storage });
 // Serve static recordings with correct MIME types
 app.use('/recordings', express.static(RECORDINGS_DIR));
 
-// Helper to read JSON
+// Helper to read JSON with fallback to packaged files
 function readJson(filePath, defaultValue = []) {
   try {
     if (fs.existsSync(filePath)) {
       const data = fs.readFileSync(filePath, 'utf8');
+      return JSON.parse(data);
+    }
+    const packagedPath = path.join(__dirname, 'data', path.basename(filePath));
+    if (fs.existsSync(packagedPath)) {
+      const data = fs.readFileSync(packagedPath, 'utf8');
       return JSON.parse(data);
     }
   } catch (err) {
@@ -55,14 +65,20 @@ function readJson(filePath, defaultValue = []) {
   return defaultValue;
 }
 
-// Helper to write JSON
+// Helper to write JSON with /tmp fallback
 function writeJson(filePath, data) {
   try {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
     return true;
   } catch (err) {
-    console.error(`Error writing ${filePath}:`, err);
-    return false;
+    try {
+      const tmpPath = path.join('/tmp', path.basename(filePath));
+      fs.writeFileSync(tmpPath, JSON.stringify(data, null, 2), 'utf8');
+      return true;
+    } catch (e2) {
+      console.warn('writeJson in-memory fallback:', e2.message);
+      return false;
+    }
   }
 }
 
@@ -578,10 +594,15 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`=======================================================`);
-  console.log(` VoxSales AI - Autonomous Voice Sales Platform Server  `);
-  console.log(` Running at http://localhost:${PORT}                   `);
-  console.log(`=======================================================`);
-});
+// Start Server if run directly (local development)
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`=======================================================`);
+    console.log(` VoxSales AI - Autonomous Voice Sales Platform Server  `);
+    console.log(` Running at http://localhost:${PORT}                   `);
+    console.log(`=======================================================`);
+  });
+}
+
+// Export for Vercel serverless handler
+module.exports = app;

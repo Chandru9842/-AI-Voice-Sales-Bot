@@ -55,6 +55,39 @@
 
 ---
 
+## ☁️ Deploying to Vercel
+
+You can deploy VoxSales AI directly to Vercel for free in under 2 minutes:
+
+### Option A: 1-Click Import via Vercel Dashboard (Recommended)
+
+1. Go to [https://vercel.com/new](https://vercel.com/new) and log in with your GitHub account.
+2. Under **"Import Git Repository"**, select **`Chandru9842/-AI-Voice-Sales-Bot`**.
+3. Keep default settings:
+   - **Framework Preset**: *Other* (detected automatically)
+   - **Root Directory**: `./`
+   - **Build Command**: *(leave blank or default)*
+   - **Output Directory**: *(leave blank or default)*
+4. Click **"Deploy"**.
+5. In ~45 seconds, Vercel will give you a live HTTPS URL (e.g. `https://ai-voice-sales-bot.vercel.app`).
+
+### Option B: Deploy via Vercel CLI
+
+```bash
+# In the project directory
+npm install -g vercel
+vercel
+```
+Follow the interactive prompts:
+- *Set up and deploy?* **Y**
+- *Which scope?* Select your account
+- *Link to existing project?* **N**
+- *Project name?* `ai-voice-sales-bot`
+- *Directory located?* `./`
+- Deploy to production: `vercel --prod`
+
+---
+
 ## 🎯 Architecture & Module Breakdown
 
 ```
